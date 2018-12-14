@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "UserDashBoard";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<fieldset>
+    <legend> User DashBoard </legend>
+
+@if(Session["UserName"] != null) { <text>
+    Welcome @Session["UserName"].ToString() </text>
+    } </fieldset>  
+
