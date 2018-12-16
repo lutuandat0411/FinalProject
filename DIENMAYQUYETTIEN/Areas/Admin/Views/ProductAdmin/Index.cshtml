@@ -56,13 +56,13 @@
                                 @Html.DisplayFor(modelItem => item.ProductName)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.SalePrice)
+                                @String.Format("{0:0,0}", item.SalePrice) VNĐ
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.OriginPrice)
+								@String.Format("{0:0,0}", item.OriginPrice) VNĐ
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.InstallmentPrice)
+                                @String.Format("{0:0,0}", item.InstallmentPrice) VNĐ
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Quantity)

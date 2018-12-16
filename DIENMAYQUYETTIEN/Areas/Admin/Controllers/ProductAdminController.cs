@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
 using DIENMAYQUYETTIEN.Models;
+using System.Transactions;
 
 namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
 {
@@ -17,6 +19,12 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
             var product = db.Products.OrderByDescending(x => x.ID).ToList();
             return View(product);
         }
+        public FileResult Details(String id)
+        {
+            var path = Server.MapPath("~/Image/" + id);
+            return File(path, "HinhAnh");
+        }
+
         [HttpGet]
         public ActionResult Edit(int id)
         {
@@ -30,18 +38,32 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var pro = db.Products.FirstOrDefault(x => x.ID == id);
-                pro.ProductCode = p.ProductCode;
-                pro.ProductName = p.ProductName;
-                pro.SalePrice = p.SalePrice;
-                pro.Quantity = p.Quantity;
-                pro.OriginPrice = p.OriginPrice;
-                pro.InstallmentPrice = p.InstallmentPrice;
-                pro.Status = p.Status;
-                pro.ProductTypeID = p.ProductTypeID;
-                pro.Avatar = p.Avatar;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                using (var scope = new TransactionScope())
+                {
+                    var pro = db.Products.FirstOrDefault(x => x.ID == id);
+                    pro.ProductCode = p.ProductCode;
+                    pro.ProductName = p.ProductName;
+                    pro.SalePrice = p.SalePrice;
+                    pro.Quantity = p.Quantity;
+                    pro.OriginPrice = p.OriginPrice;
+                    pro.InstallmentPrice = p.InstallmentPrice;
+                    pro.Status = p.Status;
+                    pro.ProductTypeID = p.ProductTypeID;
+                    db.SaveChanges();
+
+                    var path = Server.MapPath("~/Image");
+                    path = path + "/" + p.ID;
+                    if (Request.Files["HinhAnh"] != null &&
+                       Request.Files["HinhAnh"].ContentLength > 0)
+                    {
+                        Request.Files["HinhAnh"].SaveAs(path);
+
+                        scope.Complete(); // approve for transaction
+                        return RedirectToAction("Index");
+                    }
+                    else
+                        ModelState.AddModelError("HinhAnh", "Chưa có hình sản phẩm!");
+                }
             }
             return View();
         }
@@ -57,18 +79,35 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var pro = new Product();
-                pro.ProductCode = p.ProductCode;
-                pro.ProductName = p.ProductName;
-                pro.SalePrice = p.SalePrice;
-                pro.Quantity = p.Quantity;
-                pro.OriginPrice = p.OriginPrice;
-                pro.InstallmentPrice = p.InstallmentPrice;
-                pro.Status = p.Status;
-                pro.ProductTypeID = p.ProductTypeID;
-                db.Products.Add(pro);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                using (var scope = new TransactionScope())
+                {
+                    var pro = new Product();
+                    pro.ProductCode = p.ProductCode;
+                    pro.ProductName = p.ProductName;
+                    pro.SalePrice = p.SalePrice;
+                    pro.Quantity = p.Quantity;
+                    pro.OriginPrice = p.OriginPrice;
+                    pro.InstallmentPrice = p.InstallmentPrice;
+                    pro.Status = p.Status;
+                    pro.Avatar = p.Avatar;
+                    pro.ProductTypeID = p.ProductTypeID;
+                    db.Products.Add(pro);
+                    db.SaveChanges();
+
+                    var path = Server.MapPath("~/Image");
+                    path = path + "/" + p.ID;
+                    if (Request.Files["HinhAnh"] != null &&
+                       Request.Files["HinhAnh"].ContentLength > 0)
+                    {
+                        Request.Files["HinhAnh"].SaveAs(path);
+
+                        scope.Complete(); // approve for transaction
+                        return RedirectToAction("Index");
+                    }
+                    else
+                        ModelState.AddModelError("HinhÁnh", "Chưa có hình sản phẩm!");
+                }
+
             }
             return View();
         }
@@ -89,6 +128,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        
         public ActionResult Login()
         {
             return View();
@@ -103,9 +143,9 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
                 {
                     var loguser = db.Accounts.Where(u => u.Username.Equals(user.Username) && u.Password.Equals(user.Password)).FirstOrDefault();
                     if (loguser != null){
-                        Session["UserID"] = loguser.Username.ToString();  
-                        Session["UserName"] = loguser.FullName.ToString();  
-                        return RedirectToAction("Index");  
+                        Session["UserName"] = loguser.Username.ToString();  
+                        Session["FullName"] = loguser.FullName.ToString();  
+                        return RedirectToAction("UserDashBoard");  
                     }
                 }
             }
@@ -113,7 +153,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         }
            public ActionResult UserDashBoard()  
         {  
-            if (Session["UserID"] != null)  
+            if (Session["UserName"] != null)  
             {  
                 return View();  
             } else  
