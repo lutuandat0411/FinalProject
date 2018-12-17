@@ -5,7 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Create</h2>
+
 
 
 @using (Html.BeginForm("Create", "ProductAdmin", FormMethod.Post, new { enctype = "multipart/form-data" })) 
@@ -72,14 +72,16 @@
                 @Html.ValidationMessageFor(model => model.Quantity)
             </div>
         </div>
+
 		<div class="form-group">
             @Html.Label("Imagefile", "Hình sản phẩm", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBox("Imagefile", null, new { @type = "file", onchange = "readURL(this)", @class = "form-control" })
                 @Html.ValidationMessage("Imagefile")
-                <img id="Anh" src="" />
+                <img id="Anh" src="" width="100" height="100"/>
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Status, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
