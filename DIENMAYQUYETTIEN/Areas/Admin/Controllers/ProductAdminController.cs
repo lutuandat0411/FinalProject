@@ -5,10 +5,12 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using DIENMAYQUYETTIEN.Models;
-using System.Transactions;
+using System.Collections.Generic;
+using System.IO;
 
 namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
 {
+  
     public class ProductAdminController : Controller
     {
         DIENMAYQUYETTIENEntities db = new DIENMAYQUYETTIENEntities();
@@ -18,13 +20,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         {
             var product = db.Products.OrderByDescending(x => x.ID).ToList();
             return View(product);
-        }
-        public FileResult Details(String id)
-        {
-            var path = Server.MapPath("~/Image/" + id);
-            return File(path, "HinhAnh");
-        }
-
+        } 
         [HttpGet]
         public ActionResult Edit(int id)
         {
@@ -38,32 +34,18 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (var scope = new TransactionScope())
-                {
-                    var pro = db.Products.FirstOrDefault(x => x.ID == id);
-                    pro.ProductCode = p.ProductCode;
-                    pro.ProductName = p.ProductName;
-                    pro.SalePrice = p.SalePrice;
-                    pro.Quantity = p.Quantity;
-                    pro.OriginPrice = p.OriginPrice;
-                    pro.InstallmentPrice = p.InstallmentPrice;
-                    pro.Status = p.Status;
-                    pro.ProductTypeID = p.ProductTypeID;
-                    db.SaveChanges();
+                var pro = db.Products.FirstOrDefault(x => x.ID == id);
+                pro.ProductCode = p.ProductCode;
+                pro.ProductName = p.ProductName;
+                pro.SalePrice = p.SalePrice;
+                pro.Quantity = p.Quantity;
+                pro.OriginPrice = p.OriginPrice;
+                pro.InstallmentPrice = p.InstallmentPrice;
+                pro.Status = p.Status;
+                pro.Avatar = p.Avatar;
+                pro.ProductTypeID = p.ProductTypeID;
+                db.SaveChanges();
 
-                    var path = Server.MapPath("~/Image");
-                    path = path + "/" + p.ID;
-                    if (Request.Files["HinhAnh"] != null &&
-                       Request.Files["HinhAnh"].ContentLength > 0)
-                    {
-                        Request.Files["HinhAnh"].SaveAs(path);
-
-                        scope.Complete(); // approve for transaction
-                        return RedirectToAction("Index");
-                    }
-                    else
-                        ModelState.AddModelError("HinhAnh", "Chưa có hình sản phẩm!");
-                }
             }
             return View();
         }
@@ -75,39 +57,28 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Product p)
+        public ActionResult Create(Product p, HttpPostedFileBase file)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                using (var scope = new TransactionScope())
+                var pro = new Product();
+                pro.ProductCode = p.ProductCode;
+                pro.ProductName = p.ProductName;
+                pro.SalePrice = p.SalePrice;
+                pro.Quantity = p.Quantity;
+                pro.OriginPrice = p.OriginPrice;
+                pro.InstallmentPrice = p.InstallmentPrice;
+                pro.Status = p.Status;
+                pro.ProductTypeID = p.ProductTypeID;
+                if (file != null)
                 {
-                    var pro = new Product();
-                    pro.ProductCode = p.ProductCode;
-                    pro.ProductName = p.ProductName;
-                    pro.SalePrice = p.SalePrice;
-                    pro.Quantity = p.Quantity;
-                    pro.OriginPrice = p.OriginPrice;
-                    pro.InstallmentPrice = p.InstallmentPrice;
-                    pro.Status = p.Status;
-                    pro.Avatar = p.Avatar;
-                    pro.ProductTypeID = p.ProductTypeID;
+                    string pic = System.IO.Path.GetFileName(file.FileName);
+                    string path = System.IO.Path.Combine(Server.MapPath("~/Image/"), pic);
+                    file.SaveAs(path);
+                    pro.Avatar = path;
                     db.Products.Add(pro);
                     db.SaveChanges();
-
-                    var path = Server.MapPath("~/Image");
-                    path = path + "/" + p.ID;
-                    if (Request.Files["HinhAnh"] != null &&
-                       Request.Files["HinhAnh"].ContentLength > 0)
-                    {
-                        Request.Files["HinhAnh"].SaveAs(path);
-
-                        scope.Complete(); // approve for transaction
-                        return RedirectToAction("Index");
-                    }
-                    else
-                        ModelState.AddModelError("HinhÁnh", "Chưa có hình sản phẩm!");
                 }
-
             }
             return View();
         }

@@ -11,6 +11,7 @@ namespace DIENMAYQUYETTIEN.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.Web;
     
     public partial class Product
     {
@@ -29,6 +30,7 @@ namespace DIENMAYQUYETTIEN.Models
         public int InstallmentPrice { get; set; }
         public int Quantity { get; set; }
         public string Avatar { get; set; }
+        public HttpPostedFileBase Imagefile { get; set; }
         public Nullable<bool> Status { get; set; }
     
         public virtual ICollection<CashBillDetail> CashBillDetails { get; set; }
