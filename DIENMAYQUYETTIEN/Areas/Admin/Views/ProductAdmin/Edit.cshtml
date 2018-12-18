@@ -21,7 +21,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ProductCode, "Mã Sản Phẩm", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ProductCode, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.ProductCode, new { disabled = "disabled", @readonly = "readonly" })
                 @Html.ValidationMessageFor(model => model.ProductCode)
             </div>
         </div>
@@ -37,7 +37,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ProductTypeID, "Loại Sản Phẩm", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ProductTypeID", new SelectList(ViewBag.ProductType,"ID","ProductTypeName",Model.ProductType))
+                @Html.DropDownList("ProductTypeID", new SelectList(ViewBag.ProductType, "ID", "ProductTypeName", Model.ProductType))
                 @Html.ValidationMessageFor(model => model.ProductTypeID)
             </div>
         </div>

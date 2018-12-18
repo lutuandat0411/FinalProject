@@ -74,7 +74,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Product p, HttpPostedFileBase file)
+        public ActionResult Create(Product p)
         {
             CheckProduct(p);
             if (ModelState.IsValid)
@@ -102,18 +102,14 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         }
         private void CheckProduct(Product p)
         {
-            //bool isright = Regex.IsMatch(p.ProductCode, "^[a-z]");
-            if (p.OriginPrice < 0 && p.OriginPrice > 100000000)
-                ModelState.AddModelError("OriginPrice", "Giá gốc phải lớn hơn 0!");
-            if (p.SalePrice < p.OriginPrice && p.SalePrice > 100000000)
-                ModelState.AddModelError("SalePrice", "Giá bán phải lớn hơn giá gốc!");
-            if (p.InstallmentPrice < p.SalePrice && p.InstallmentPrice > 100000000)
-                ModelState.AddModelError("InstallmentPrice", "Giá góp phải lớn hơn giá bán!");
-            if (p.ProductName == null)
-                ModelState.AddModelError("ProductName", "Tên sản phẩm không được trống!");
-            if (p.ProductCode == null)
-                ModelState.AddModelError("ProductCode", "Mã sản phẩm không được trống!");
-            
+                if (p.OriginPrice < 0 && p.OriginPrice > 100000000)
+                    ModelState.AddModelError("OriginPrice", "Giá gốc phải lớn hơn 0!");
+                if (p.SalePrice < p.OriginPrice && p.SalePrice > 100000000)
+                    ModelState.AddModelError("SalePrice", "Giá bán phải lớn hơn giá gốc!");
+                if (p.InstallmentPrice < p.SalePrice && p.InstallmentPrice > 100000000)
+                    ModelState.AddModelError("InstallmentPrice", "Giá góp phải lớn hơn giá bán!");
+                if (p.ProductName == null || p.ProductName.Length < 5 && p.ProductName.Length > 30)
+                    ModelState.AddModelError("ProductName", "Tên sản phẩm không được trống và phải nằm trong khoảng cho phép!");
         }
         [HttpGet]
         public ActionResult Delete(int id)
