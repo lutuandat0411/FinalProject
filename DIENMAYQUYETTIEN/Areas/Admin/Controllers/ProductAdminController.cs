@@ -22,7 +22,14 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var product = db.Products.OrderByDescending(x => x.ID).ToList();
-            return View(product);
+            if (Session["UserName"] != null)
+            {
+                return View(product);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
         public FileResult LoadImage(String id)
         {
@@ -42,6 +49,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(Product p, int id)
         {
             CheckProduct(p);
@@ -66,6 +74,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
             ViewBag.ProductType = db.ProductTypes.OrderByDescending(x => x.ID).ToList();
             return View(p);
         }
+        
         [HttpGet]
         public ActionResult Create()
         {
@@ -74,6 +83,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Product p)
         {
             CheckProduct(p);
@@ -98,19 +108,21 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
                 }
             }
             ViewBag.ProductType = db.ProductTypes.OrderByDescending(x => x.ID).ToList();
-            return View();
+            return View(p);
         }
         private void CheckProduct(Product p)
         {
-                if (p.OriginPrice < 0 && p.OriginPrice > 100000000)
-                    ModelState.AddModelError("OriginPrice", "Giá gốc phải lớn hơn 0!");
-                if (p.SalePrice < p.OriginPrice && p.SalePrice > 100000000)
-                    ModelState.AddModelError("SalePrice", "Giá bán phải lớn hơn giá gốc!");
-                if (p.InstallmentPrice < p.SalePrice && p.InstallmentPrice > 100000000)
-                    ModelState.AddModelError("InstallmentPrice", "Giá góp phải lớn hơn giá bán!");
-                if (p.ProductName == null || p.ProductName.Length < 5 && p.ProductName.Length > 30)
-                    ModelState.AddModelError("ProductName", "Tên sản phẩm không được trống và phải nằm trong khoảng cho phép!");
+            if (p.OriginPrice < 0 && p.OriginPrice > 100000000)
+                ModelState.AddModelError("OriginPrice", "Giá gốc phải lớn hơn 0!");
+            if (p.SalePrice < p.OriginPrice && p.SalePrice > 100000000)
+                ModelState.AddModelError("SalePrice", "Giá bán phải lớn hơn giá gốc!");
+            if (p.InstallmentPrice < p.SalePrice && p.InstallmentPrice > 100000000)
+                ModelState.AddModelError("InstallmentPrice", "Giá góp phải lớn hơn giá bán!");
+            if (p.ProductName == null && p.ProductName.Length > 100)
+                ModelState.AddModelError("ProductName", "Tên sản phẩm không được trống!");
         }
+
+        
         [HttpGet]
         public ActionResult Delete(int id)
         {
@@ -121,6 +133,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
 
         [HttpPost]
         [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public ActionResult De( int id)
         {
             var pro = db.Products.FirstOrDefault(x => x.ID == id);
@@ -131,7 +144,14 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         
         public ActionResult Login()
         {
-            return View();
+            if (Session["UserName"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -143,9 +163,8 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
                 {
                     var loguser = db.Accounts.Where(u => u.Username.Equals(user.Username) && u.Password.Equals(user.Password)).FirstOrDefault();
                     if (loguser != null){
-                        Session["UserName"] = loguser.Username.ToString();  
-                        Session["FullName"] = loguser.FullName.ToString();  
-                        return RedirectToAction("Index");  
+                        Session["UserName"] = loguser.FullName.ToString();  
+                        return RedirectToAction("Index"); 
                     }
                 }
             }
@@ -153,18 +172,9 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         }
         public ActionResult Logout()
         {
-            return View();
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Logout(Account user)
-        {
-            if (ModelState.IsValid)
-            {
-             Session.Abandon();
-             return RedirectToAction("Index");
-            }
-            return View();
+              FormsAuthentication.SignOut();
+              Session.Abandon();
+              return RedirectToAction("Index", "ProductAdmin");
         }
         public ActionResult UserDashBoard()  
         {  
