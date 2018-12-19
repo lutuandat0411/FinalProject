@@ -112,14 +112,18 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         }
         private void CheckProduct(Product p)
         {
-            if (p.OriginPrice < 0 && p.OriginPrice > 100000000)
+            DIENMAYQUYETTIENEntities db = new DIENMAYQUYETTIENEntities();
+            if (p.OriginPrice < 0 || p.OriginPrice > 100000000)
                 ModelState.AddModelError("OriginPrice", "Giá gốc phải lớn hơn 0!");
-            if (p.SalePrice < p.OriginPrice && p.SalePrice > 100000000)
+            if (p.SalePrice < p.OriginPrice || p.SalePrice > 100000000)
                 ModelState.AddModelError("SalePrice", "Giá bán phải lớn hơn giá gốc!");
-            if (p.InstallmentPrice < p.SalePrice && p.InstallmentPrice > 100000000)
+            if (p.InstallmentPrice < p.SalePrice || p.InstallmentPrice > 100000000)
                 ModelState.AddModelError("InstallmentPrice", "Giá góp phải lớn hơn giá bán!");
-            if (p.ProductName == null && p.ProductName.Length > 100)
-                ModelState.AddModelError("ProductName", "Tên sản phẩm không được trống!");
+            if (p.ProductName == null || p.ProductName.Length > 50)
+                ModelState.AddModelError("ProductName", "Tên sản phẩm không được trống và không được lớn hơn 50 ký tự!");
+            if (p.ID == 0 && db.Products.Where(pro => pro.ProductName == p.ProductName).Count() > 0)
+                ModelState.AddModelError("ProductName", "Tên sản phẩm đã tồn tại vui lòng nhập lại!");
+           
         }
 
         
@@ -157,6 +161,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(Account user)
         {
+            CheckLogin(user);
             if (ModelState.IsValid)
             {
                 using (DIENMAYQUYETTIENEntities db = new DIENMAYQUYETTIENEntities())
@@ -165,6 +170,10 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
                     if (loguser != null){
                         Session["UserName"] = loguser.FullName.ToString();  
                         return RedirectToAction("Index"); 
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Login", "Username or Password Doesn't Exist");
                     }
                 }
             }
@@ -175,6 +184,13 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
               FormsAuthentication.SignOut();
               Session.Abandon();
               return RedirectToAction("Index", "ProductAdmin");
+        }
+        private void CheckLogin(Account user)
+        {
+            DIENMAYQUYETTIENEntities db = new DIENMAYQUYETTIENEntities();
+            if (db.Accounts.Where(u => u.Username != user.Username || u.Password != user.Password).)
+               ModelState.AddModelError("Login", "Tên đăng nhập hoặc mật khẩu không đúng vui lòng nhập lại!");
+
         }
         public ActionResult UserDashBoard()  
         {  
