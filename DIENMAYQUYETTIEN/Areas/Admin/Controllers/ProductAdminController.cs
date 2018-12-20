@@ -170,11 +170,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
                     if (loguser != null){
                         Session["UserName"] = loguser.FullName.ToString();  
                         return RedirectToAction("Index"); 
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("Login", "Username or Password Doesn't Exist");
-                    }
+                    } 
                 }
             }
             return View(user);
@@ -187,10 +183,8 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         }
         private void CheckLogin(Account user)
         {
-            DIENMAYQUYETTIENEntities db = new DIENMAYQUYETTIENEntities();
-            if (db.Accounts.Where(u => u.Username != user.Username || u.Password != user.Password).)
-               ModelState.AddModelError("Login", "Tên đăng nhập hoặc mật khẩu không đúng vui lòng nhập lại!");
-
+            if (user.Username == null || user.Password == null)
+                ModelState.AddModelError("Login", "Tên đăng nhập hoặc mật khẩu không được trống");
         }
         public ActionResult UserDashBoard()  
         {  
