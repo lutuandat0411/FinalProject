@@ -79,6 +79,7 @@
     <Compile Include="BangsanphamTest.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BanghoadonTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DIENMAYQUYETTIEN\DIENMAYQUYETTIEN.csproj">
