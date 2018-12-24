@@ -5,6 +5,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DIENMAYQUYETTIEN.Areas.Admin.Controllers;
 using System.Web.Mvc;
 using Moq;
+using System.Net.Http;
+using DIENMAYQUYETTIEN.Models;
+using System.Web;
+using System.Web.Routing;
 
 namespace DIENMAYQUYETTIENTest
 {
@@ -14,27 +18,28 @@ namespace DIENMAYQUYETTIENTest
         [TestMethod]
         public void TestDetails()
         {
-            var controller = new ProductAdminController();
+            /*
+            var controller = new CashBillController();
             var context = new Mock<HttpContextBase>();
-            context.Setup(c => c.Server.MapPath("~/App_Data/0")).Returns("~/App_Data/0");
+            context.Setup(c => c.Server.MapPath("~/Image/0")).Returns("~/Image/0");
             controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
 
             var result = controller.Details("0") as FilePathResult;
 
             Assert.IsNotNull(result);
             Assert.AreEqual("images", result.ContentType);
-            Assert.AreEqual("~/App_Data/0", result.FileName);
+            Assert.AreEqual("~/Image/0", reult.FileName);*/
         }
         [TestMethod]
         public void TestIndex()
         {
-            var controller = new ProductAdminController();
+            var controller = new CashBillController();
             var result = controller.Index() as ViewResult;
-            var db = new CS4PEntities();
+            var db = new DIENMAYQUYETTIENEntities();
 
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result.Model, typeof(List<Bangsapnham>));
-            Assert.AreEqual(db.BangSanPhams.Count(), ((List<BangSanPham>)result.Model).Count);
+            Assert.IsInstanceOfType(result.Model, typeof(List<CashBill>));
+            Assert.AreEqual(db.CashBills, ((List<CashBill>)result.Model).Count);
         }
 
         [TestMethod]
@@ -46,7 +51,11 @@ namespace DIENMAYQUYETTIENTest
         [TestMethod]
         public void AddTest()
         {
+            var controller = new CashBillController();
+            var result = controller.Add() as ViewResult;
 
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result.ViewData["Loai_id"], typeof(SelectList));
         }
 
 
