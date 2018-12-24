@@ -43,7 +43,19 @@ namespace DIENMAYQUYETTIENTest
         [TestMethod]
         public void DeleteTest()
         {
+            Controller target = new Controller();
+            int id = 50;
 
+            ActionResult actual;
+            ProductAdminController db = new ProductAdminController();
+            Course courseToDelete = db.Courses.Find(id);
+            List<CourseMeet> meets = db.Meets.Where(a => a.courseID == id).ToList();
+            actual = target.RemoveCourseConfirmed(courseToDelete);
+            foreach (CourseMeet meet in meets)
+            {
+                Assert.IsFalse(db.ViewBag.Contains());
+            }
+            Assert.IsFalse(db.Courses.Contains(courseToDelete));
         }
 
         [TestMethod]
