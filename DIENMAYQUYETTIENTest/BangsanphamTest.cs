@@ -37,7 +37,7 @@ namespace DIENMAYQUYETTIENTest
         }
 
         [TestMethod]
-        public void AddTest()
+        public void CreateTest()
         {
             var controller = new ProductAdminController();
             var db = new DIENMAYQUYETTIENEntities();
