@@ -49,7 +49,7 @@ namespace DIENMAYQUYETTIENTest
         }
 
         [TestMethod]
-        public void AddTest()
+        public void CreateTest()
         {
             var controller = new CashBillController();
             var result = controller.Create() as ViewResult;
