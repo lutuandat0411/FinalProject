@@ -63,10 +63,10 @@ namespace DIENMAYQUYETTIENTest
         //            ProductCode = "Code",
         //            ProductName = "ProductName",
         //            ProductTypeID = db.ProductTypes.First().ID,
-        //            SalePrice = 123,
-        //            OriginPrice = 123,
-        //            InstallmentPrice = 123,
-        //            Quantity = 123,
+        //            SalePrice = 122,
+        //            OriginPrice = 122,
+        //            InstallmentPrice = 122,
+        //            Quantity = 122,
         //            Avatar = ""
         //        };
         //        db.Products.Add(product);
