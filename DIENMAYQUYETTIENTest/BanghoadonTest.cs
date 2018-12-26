@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DIENMAYQUYETTIEN.Areas.Admin.Controllers;
 using System.Web.Mvc;
-using Moq;
-using System.Net.Http;
+//using Moq;
+//using System.Net.Http;
 using DIENMAYQUYETTIEN.Models;
 using System.Web;
-using System.Web.Routing;
+//using System.Web.Routing;
 
 namespace DIENMAYQUYETTIENTest
 {
@@ -52,7 +52,7 @@ namespace DIENMAYQUYETTIENTest
         public void AddTest()
         {
             var controller = new CashBillController();
-            var result = controller.Add() as ViewResult;
+            var result = controller.Create() as ViewResult;
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result.ViewData["Loai_id"], typeof(SelectList));
