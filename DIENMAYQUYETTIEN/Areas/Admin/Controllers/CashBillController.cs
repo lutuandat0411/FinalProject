@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using DIENMAYQUYETTIEN.Models;
 using System.Transactions;
+using DIENMAYQUYETTIEN.Areas.Admin.Models;
 
 namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
 {
@@ -137,6 +138,27 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             return View(cashbill);
+        }
+        public ActionResult Print(int id)
+        {
+            var order = db.CashBills.FirstOrDefault(o => o.ID == id);
+            if (order != null)
+            {
+                ReceiptsModel rp = new ReceiptsModel();
+                rp.BillCode = order.BillCode;
+                rp.CustomerName = order.CustomerName;
+                rp.PhoneNumber = order.PhoneNumber;
+                rp.Address = order.Address;
+                rp.Date = order.Date;
+                rp.Shipper = order.Shipper;
+                rp.Note = order.Note;
+                rp.GrandTotal = order.GrandTotal;
+
+                rp.CashBillDetail = order.CashBillDetails.ToList();
+
+                return View(rp);
+            }
+            return View();
         }
         protected override void Dispose(bool disposing)
         {

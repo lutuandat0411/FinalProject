@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using DIENMAYQUYETTIEN.Areas.Admin.Models;
 using DIENMAYQUYETTIEN.Models;
 
 namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
@@ -18,7 +19,15 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var installmentbills = db.InstallmentBills.Include(i => i.Customer);
-            return View(installmentbills.ToList());
+            if (Session["UserName"] != null)
+            {
+                return View(installmentbills);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+
         }
 
         // GET: /Admin/InstallmentBill/Details/5
@@ -108,7 +117,41 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
             }
             return View(installmentbill);
         }
+        private void checkInstallBill(InstallmentBill inBill)
+        {
+            if (inBill.Method == null || inBill.Method.Equals(""))
+                ModelState.AddModelError("Method", "Không được trống");
+            if (inBill.Shipper == null || inBill.Shipper.Equals(""))
+                ModelState.AddModelError("Shipper", "Vui Lòng Điền Tên Người Giao Hàng");
+            if (inBill.Period < 15)
+                ModelState.AddModelError("Period", "Thời gian góp vui lòng từ 15 ngày trở lên");
+            if (inBill.Taken <= 0)
+                ModelState.AddModelError("Taken", "Tiền đã nhận vui lòng lớn hơn 0");
+            if (inBill.Remain <= 0)
+                ModelState.AddModelError("Remain", "Tiền phải góp vui lòng lớn hơn 0");
+        }
+        public ActionResult PrintBill(int id)
+        {
+            var order = db.InstallmentBills.FirstOrDefault(o => o.ID == id);
+            if (order != null)
+            {
+                InstallReceipt rp = new InstallReceipt();
+                rp.BillCode = order.BillCode;
+                rp.Customer.CustomerName = order.Customer.CustomerName;
+                rp.Shipper = order.Shipper;
+                rp.Method = order.Method;
+                rp.Date = order.Date;
+                rp.Period = order.Period;
+                rp.Note = order.Note;
+                rp.Taken = order.Taken;
+                rp.Remain = order.Remain;
 
+                rp.InstallmentBillDetail = order.InstallmentBillDetails.ToList();
+
+                return View(rp);
+            }
+            return View();
+        }
         // POST: /Admin/InstallmentBill/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

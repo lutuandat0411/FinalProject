@@ -166,6 +166,8 @@
     <Compile Include="Areas\Admin\Controllers\InstallBillDetailController.cs" />
     <Compile Include="Areas\Admin\Controllers\InstallmentBillController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductAdminController.cs" />
+    <Compile Include="Areas\Admin\Models\InstallReceipt.cs" />
+    <Compile Include="Areas\Admin\Models\ReceiptsModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -522,7 +524,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
