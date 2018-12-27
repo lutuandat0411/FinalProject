@@ -1,18 +1,12 @@
 ﻿@model DIENMAYQUYETTIEN.Models.CashBill
 
 @{
-    Layout = null;
+	ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
-</head>
-<body>
-    @using (Html.BeginForm())
+<h2>Cập Nhật Hóa Đơn<h2>
+    @using (Html.BeginForm("Edit", "CashBill", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         
@@ -23,65 +17,65 @@
             @Html.HiddenFor(model => model.ID)
     
             <div class="form-group">
-                @Html.LabelFor(model => model.BillCode, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.BillCode, "Mã Hóa Đơn", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.BillCode)
+                    @Html.TextBoxFor(model => model.BillCode, new { disabled = "disabled", @readonly = "readonly" })
                     @Html.ValidationMessageFor(model => model.BillCode)
                 </div>
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.CustomerName, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.CustomerName, "Tên Khách Hàng", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.CustomerName)
+                    @Html.TextBoxFor(model => model.CustomerName, new { disabled = "disabled", @readonly = "readonly" })
                     @Html.ValidationMessageFor(model => model.CustomerName)
                 </div>
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.PhoneNumber, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.PhoneNumber, "Điện Thoại Liên Lạc", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.PhoneNumber)
+                    @Html.EditorFor(model => model.PhoneNumber, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.PhoneNumber)
                 </div>
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Address, "Địa chỉ", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Address)
+                    @Html.EditorFor(model => model.Address, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Address)
                 </div>
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.Date, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Date, "Ngày lập hóa đơn" new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Date)
+                    @Html.TextBoxrFor(model => model.Date, new { disabled = "disabled", @readonly = "readonly" })
                     @Html.ValidationMessageFor(model => model.Date)
                 </div>
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.Shipper, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Shipper, "Người Giao Hàng", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Shipper)
+                    @Html.EditorFor(model => model.Shipper, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Shipper)
                 </div>
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.Note, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Note, "Ghi chú", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Note)
+                    @Html.EditorFor(model => model.Note, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Note)
                 </div>
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.GrandTotal, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.GrandTotal, "Tổng Tiền", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.GrandTotal)
+                    @Html.EditorFor(model => model.GrandTotal, new { disabled = "disabled", @readonly = "readonly" })
                     @Html.ValidationMessageFor(model => model.GrandTotal)
                 </div>
             </div>
@@ -95,7 +89,5 @@
     }
     
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary pull-right", @style = "padding-left: 10px;" } )
     </div>
-</body>
-</html>

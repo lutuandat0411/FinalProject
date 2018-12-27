@@ -1,83 +1,71 @@
 ﻿@model IEnumerable<DIENMAYQUYETTIEN.Models.CashBill>
 
 @{
-    Layout = null;
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
+<link rel="stylesheet" type="text/css" href="~/AreasContent/dataTables.min.css" />
 
-<!DOCTYPE html>
+<h2>Danh sách sản phẩm</h2>
+<hr />
+<p>
+    @Html.ActionLink("Thêm mới hóa đơn", "Create", null, new { @class = "btn btn-primary pull-right", @style = "margin-bottom: 10px" })
+</p>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.BillCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CustomerName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Shipper)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Note)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GrandTotal)
-            </th>
-            <th></th>
-        </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BillCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Shipper)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Note)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GrandTotal)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-            </td>
-        </tr>
-    }
-    
-    </table>
-</body>
-</html>
+    <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%">
+		<thead>
+                <tr>
+                     <th>Bill Code</th>
+                     <th>Customer Name</th>
+                     <th>Phone Number</th>
+                     <th>Address</th>
+                     <th>Date</th>
+                     <th>Shipper</th>
+                     <th>Note</th>
+                     <th>Grand Total</th>
+                     <th>Action</th>
+                  </tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model) {
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.BillCode)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.CustomerName)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.PhoneNumber)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Address)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Date)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Shipper)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Note)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.GrandTotal)
+					</td>
+					<td>
+						@Html.ActionLink("Edit", "Edit", new { id=item.ID }, new {@class = "btn btn-warning" }) |
+						@Html.ActionLink("Details", "Details", new { id=item.ID }, new {@class = "btn btn-info"}) 
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+@section Scripts{
+    <script type="text/javascript" charset="utf-8" src="~/AreasContent/dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+}

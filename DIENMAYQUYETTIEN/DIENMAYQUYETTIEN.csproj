@@ -316,6 +316,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Image\iphonex.jpg" />
+    <Content Include="Image\Logo_QT.jpg" />
     <Content Include="Image\maygiattoshiba.png" />
     <Content Include="Image\maylanhlg.jpg" />
     <Content Include="Image\maylanhtoshiba.jpg" />
@@ -459,13 +460,9 @@
     <Content Include="AreasContent\vendor\bootstrap\css\bootstrap.min.css.map" />
     <Content Include="Areas\Admin\Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Areas\Admin\Views\CashBill\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\CashBill\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\CashBill\Details.cshtml" />
     <Content Include="Areas\Admin\Views\CashBill\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\CashBill\Index.cshtml" />
     <Content Include="Areas\Admin\Views\CashBillDetail\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\CashBillDetail\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\CashBillDetail\Details.cshtml" />
     <Content Include="Areas\Admin\Views\CashBillDetail\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\CashBillDetail\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

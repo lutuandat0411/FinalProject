@@ -17,8 +17,14 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         // GET: /Admin/CashBillDetail/
         public ActionResult Index()
         {
-            var cashbilldetails = db.CashBillDetails.Include(c => c.CashBill).Include(c => c.Product);
-            return View(cashbilldetails.ToList());
+            if (Session["CashBillDetail"] == null)
+                Session["CashBillDetail"] = new List<CashBillDetail>();
+            return PartialView(Session["CashBillDetail"]);
+        }
+
+        public int SalePrice(int ProductID)
+        {
+            return db.Products.Find(ProductID).SalePrice;
         }
 
         // GET: /Admin/CashBillDetail/Details/5
@@ -37,11 +43,13 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         }
 
         // GET: /Admin/CashBillDetail/Create
-        public ActionResult Create()
+        public PartialViewResult Create()
         {
-            ViewBag.BillID = new SelectList(db.CashBills, "ID", "BillCode");
-            ViewBag.ProductID = new SelectList(db.Products, "ID", "ProductCode");
-            return View();
+            ViewBag.ProductID = new SelectList(db.Products, "ID", "ProductName");
+            var model = new CashBillDetail();
+            model.BillID = 0;
+            model.Quantity = 1;
+            return PartialView(model);
         }
 
         // POST: /Admin/CashBillDetail/Create
@@ -49,18 +57,22 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ID,BillID,ProductID,Quantity,SalePrice")] CashBillDetail cashbilldetail)
+        public ActionResult Create2( CashBillDetail model)
         {
             if (ModelState.IsValid)
             {
-                db.CashBillDetails.Add(cashbilldetail);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                model.BillID = Environment.TickCount;
+                model.Product = db.Products.Find(model.ProductID);
+                var billDetail = Session["CashBillDetail"] as List<CashBillDetail>;
+                if (billDetail == null)
+                    billDetail = new List<CashBillDetail>();
+                billDetail.Add(model);
+                Session["CashBillDetail"] = billDetail;
+                return RedirectToAction("Create", "CashBill");
             }
 
-            ViewBag.BillID = new SelectList(db.CashBills, "ID", "BillCode", cashbilldetail.BillID);
-            ViewBag.ProductID = new SelectList(db.Products, "ID", "ProductCode", cashbilldetail.ProductID);
-            return View(cashbilldetail);
+            ViewBag.ProductID = new SelectList(db.Products, "ID", "ProductName", model.ProductID);
+            return View("Create", model);
         }
 
         // GET: /Admin/CashBillDetail/Edit/5

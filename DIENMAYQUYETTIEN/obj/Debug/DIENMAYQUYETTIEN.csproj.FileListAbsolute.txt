@@ -215,7 +215,6 @@ G:\PTTKHDT\FinalProject\DIENMAYQUYETTIEN\bin\Microsoft.Owin.Security.OAuth.xml
 G:\PTTKHDT\FinalProject\DIENMAYQUYETTIEN\bin\Microsoft.Owin.Security.Google.xml
 G:\PTTKHDT\FinalProject\DIENMAYQUYETTIEN\bin\Microsoft.Owin.Security.Twitter.xml
 G:\PTTKHDT\FinalProject\DIENMAYQUYETTIEN\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-G:\PTTKHDT\FinalProject\DIENMAYQUYETTIEN\obj\Debug\DIENMAYQUYETTIEN.csprojResolveAssemblyReference.cache
 G:\PTTKHDT\FinalProject\DIENMAYQUYETTIEN\obj\Debug\DIENMAYQUYETTIEN.csproj.CoreCompileInputs.cache
 G:\PTTKHDT\FinalProject\DIENMAYQUYETTIEN\obj\Debug\DIENMAYQUYETTIEN.csproj.CopyComplete
 G:\PTTKHDT\FinalProject\DIENMAYQUYETTIEN\obj\Debug\DIENMAYQUYETTIEN.dll
@@ -385,3 +384,4 @@ D:\FinalProject\DIENMAYQUYETTIEN\bin\Microsoft.Owin.Security.MicrosoftAccount.xm
 D:\FinalProject\DIENMAYQUYETTIEN\obj\Debug\DIENMAYQUYETTIEN.csprojResolveAssemblyReference.cache
 D:\FinalProject\DIENMAYQUYETTIEN\obj\Debug\DIENMAYQUYETTIEN.dll
 D:\FinalProject\DIENMAYQUYETTIEN\obj\Debug\DIENMAYQUYETTIEN.pdb
+G:\PTTKHDT\FinalProject\DIENMAYQUYETTIEN\obj\Debug\DIENMAYQUYETTIEN.csprojAssemblyReference.cache

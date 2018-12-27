@@ -1,68 +1,52 @@
 ﻿@model DIENMAYQUYETTIEN.Models.CashBillDetail
 
 @{
-    Layout = null;
+    ViewBag.Title = "Create";
+
 }
 
-<!DOCTYPE html>
+@using (Html.BeginForm("Create2", "CashBillDetail", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Thông tin các sản phẩm</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.BillID)
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
-</head>
-<body>
-    @using (Html.BeginForm()) 
-    {
-        @Html.AntiForgeryToken()
-        
-        <div class="form-horizontal">
-            <h4>CashBillDetail</h4>
-            <hr />
-            @Html.ValidationSummary(true)
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.BillID, "BillID", new { @class = "control-label col-md-2" })
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.ProductID, "Sản phẩm", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("BillID", String.Empty)
-                    @Html.ValidationMessageFor(model => model.BillID)
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.ProductID, "ProductID", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("ProductID", String.Empty)
+                    @Html.DropDownListFor(model => model.ProductID, (IEnumerable<SelectListItem>)ViewData["ProductTypeID"], String.Empty)
                     @Html.ValidationMessageFor(model => model.ProductID)
                 </div>
             </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Quantity, new { @class = "control-label col-md-2" })
+
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.SalePrice, "Giá bán", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.SalePrice, new { disabled = "disabled", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.SalePrice)
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Quantity, "Số lượng", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Quantity)
                     @Html.ValidationMessageFor(model => model.Quantity)
                 </div>
             </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.SalePrice, new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.SalePrice)
-                    @Html.ValidationMessageFor(model => model.SalePrice)
-                </div>
-            </div>
-    
-            <div class="form-group">
+
+            <div class="form-group col-md-6">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Thêm sản phẩm" class="btn btn-default" />
                 </div>
             </div>
         </div>
-    }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
     </div>
-</body>
-</html>
+}

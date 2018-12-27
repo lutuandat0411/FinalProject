@@ -101,6 +101,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
                         Request.Files["Imagefile"].SaveAs(path);
 
                         scope.Complete(); // approve for transaction
+                        TempData["message"] = "Thêm sản phẩm thành công.";
                         return RedirectToAction("Index");
                     }
                     else
@@ -123,7 +124,9 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
                 ModelState.AddModelError("ProductName", "Tên sản phẩm không được trống và không được lớn hơn 50 ký tự!");
             if (p.ID == 0 && db.Products.Where(pro => pro.ProductName == p.ProductName).Count() > 0)
                 ModelState.AddModelError("ProductName", "Tên sản phẩm đã tồn tại vui lòng nhập lại!");
-           
+            if (p.Imagefile != null && p.Imagefile.ContentLength > 2097152)
+                ModelState.AddModelError("Avatar", "Hình ảnh phải nhỏ hơn 2MB");
+
         }
 
         
@@ -140,10 +143,20 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult De( int id)
         {
-            var pro = db.Products.FirstOrDefault(x => x.ID == id);
-            db.Products.Remove(pro);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (db.CashBillDetails.Where(c => c.ProductID == id).ToList().Count > 0 || db.InstallmentBillDetails.Where(i => i.ProductID == id).ToList().Count > 0)
+            {
+                TempData["message"] = "Không thể xóa sản phẩm đang nằm trong CashBill hoặc InstallmentBill.";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                var pro = db.Products.FirstOrDefault(x => x.ID == id);
+                db.Products.Remove(pro);
+                db.SaveChanges();
+                TempData["message"] =  "Đã xóa sản phẩm.";
+                return RedirectToAction("Index");
+            }
+
         }
         
         public ActionResult Login()
