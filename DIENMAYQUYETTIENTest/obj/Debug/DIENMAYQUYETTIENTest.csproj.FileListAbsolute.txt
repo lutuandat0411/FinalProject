@@ -174,3 +174,6 @@ D:\VUONGNGIU\FinalProject\DIENMAYQUYETTIENTest\obj\Debug\DIENMAYQUYETTIENTest.cs
 D:\VUONGNGIU\FinalProject\DIENMAYQUYETTIENTest\obj\Debug\DIENMAYQUYETTIENTest.dll
 D:\VUONGNGIU\FinalProject\DIENMAYQUYETTIENTest\obj\Debug\DIENMAYQUYETTIENTest.pdb
 >>>>>>> a1b8174ea3488f981466e1c512b1fa5af2acd2db
+G:\PTTKHDT\FinalProject\DIENMAYQUYETTIENTest\bin\Debug\DIENMAYQUYETTIENTest.dll.config
+G:\PTTKHDT\FinalProject\DIENMAYQUYETTIENTest\bin\Debug\System.Web.Razor.dll
+G:\PTTKHDT\FinalProject\DIENMAYQUYETTIENTest\bin\Debug\System.Web.Razor.xml

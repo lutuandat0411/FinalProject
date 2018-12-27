@@ -17,7 +17,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
 
         // GET: /Admin/CashBill/
         public ActionResult Index()
-        {
+        { 
             var cashbill = db.CashBills.OrderByDescending(x => x.ID).ToList();
             if (Session["UserName"] != null)
             {
