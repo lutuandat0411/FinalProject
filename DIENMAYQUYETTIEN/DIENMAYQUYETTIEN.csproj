@@ -269,6 +269,8 @@
     <Content Include="AreasContent\images\icons\map-marker.png" />
     <Content Include="AreasContent\images\icons\symbol-01.png" />
     <Content Include="AreasContent\js\main.js" />
+    <Content Include="AreasContent\Print\Logo_QT_PNG.png" />
+    <Content Include="AreasContent\Print\style.css" />
     <Content Include="AreasContent\Site.css" />
     <Content Include="AreasContent\vendor\animate\animate.css" />
     <Content Include="AreasContent\vendor\animsition\css\animsition.css" />
@@ -468,10 +470,10 @@
     <Content Include="Areas\Admin\Views\InstallmentBill\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\InstallmentBill\Index.cshtml" />
     <Content Include="Areas\Admin\Views\InstallBillDetail\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\InstallBillDetail\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\InstallBillDetail\Details.cshtml" />
     <Content Include="Areas\Admin\Views\InstallBillDetail\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\InstallBillDetail\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CashBill\PrintCashBill.cshtml" />
+    <Content Include="Areas\Admin\Views\InstallmentBill\PrintBill.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
