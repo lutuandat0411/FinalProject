@@ -26,7 +26,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
             }
             else
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("~/ProductAdmin/Login");
             }
         }
 
@@ -48,8 +48,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         // GET: /Admin/CashBill/Create
         public ActionResult Create()
         {
-            
-            return View(Session["CashBill"]);
+            return View();
         }
 
         // POST: /Admin/CashBill/Create
@@ -75,7 +74,8 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
                 {
                     var listBill = Session["CashBill"] as CashBill;
                     var billDetail = Session["CashBillDetail"] as List<CashBillDetail>;
-
+                    listBill.Date = DateTime.Now;
+           
                     db.CashBills.Add(listBill);
                     db.SaveChanges();
 
@@ -84,6 +84,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
                         detail.BillID = listBill.ID;
                         detail.Product = null;
                         db.CashBillDetails.Add(detail);
+                        listBill.GrandTotal += (detail.Quantity * detail.SalePrice);
                     }
                     db.SaveChanges();
                     scope.Complete();
@@ -127,9 +128,16 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cashbill).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Entry(cashbill).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (Exception e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
             }
             return View(cashbill);
         }

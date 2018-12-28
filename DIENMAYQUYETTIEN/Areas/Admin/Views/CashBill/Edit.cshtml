@@ -15,7 +15,7 @@
             <hr />
             @Html.ValidationSummary(true)
             @Html.HiddenFor(model => model.ID)
-    
+            @Html.HiddenFor(model => model.BillCode)
             <div class="form-group">
                 @Html.LabelFor(model => model.BillCode, "Mã Hóa Đơn", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -23,7 +23,7 @@
                     @Html.ValidationMessageFor(model => model.BillCode)
                 </div>
             </div>
-    
+            @Html.HiddenFor(model => model.CustomerName)
             <div class="form-group">
                 @Html.LabelFor(model => model.CustomerName, "Tên Khách Hàng", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -49,9 +49,9 @@
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.Date, "Ngày lập hóa đơn" new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Date, "Ngày lập hóa đơn", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxrFor(model => model.Date, new { disabled = "disabled", @readonly = "readonly" })
+                    @Html.TextBoxFor(model => model.Date, new { disabled = "disabled", @readonly = "readonly" })
                     @Html.ValidationMessageFor(model => model.Date)
                 </div>
             </div>

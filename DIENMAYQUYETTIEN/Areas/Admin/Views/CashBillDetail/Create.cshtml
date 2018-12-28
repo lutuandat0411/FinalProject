@@ -27,7 +27,7 @@
             <div class="form-group col-md-6">
                 @Html.LabelFor(model => model.SalePrice, "Giá bán", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.SalePrice, new { disabled = "disabled", @readonly = "readonly" })
+                    @Html.TextBoxFor(model => model.SalePrice)
                     @Html.ValidationMessageFor(model => model.SalePrice)
                 </div>
             </div>

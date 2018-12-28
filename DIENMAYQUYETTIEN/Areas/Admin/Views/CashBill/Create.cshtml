@@ -29,8 +29,8 @@
             <div class="form-group col-md-6">
                 @Html.LabelFor(model => model.PhoneNumber, "Số điện thoại", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.CustomerName)
-                    @Html.ValidationMessageFor(model => model.CustomerName)
+                    @Html.EditorFor(model => model.PhoneNumber)
+                    @Html.ValidationMessageFor(model => model.PhoneNumber)
                 </div>
             </div>
         </div>
@@ -81,21 +81,14 @@
 <div>
     @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary pull-right", @style = "margin-bottom: 10px" })
 </div>
-@section Scripts {
+@section Scripts{
     <script>
-        function getSalePrice(ProductID) {
-            var url = '@Url.Action("SalePrice", "CashBillDetails")';
-            url = url + '?ProductID=' + ProductID
-            $.get(url, function (data) {
-                $('#SalePrice').val(data);
-            });
-        }
-        $(document).ready(function () {
-            var ProductID = $("#ProductID").children("option:selected").val();
-            getSalePrice(ProductID);
+    $('#ProductID').change(function () {
+        var url = '@Url.Action("SalePrice", "CashBillDetail")';
+        url = url + '?ProductID=' + $(this).val();
+        $.get(url, function (data) {
+            $('#SalePrice').val(data);
         });
-        $('#ProductID').change(function () {
-            getSalePrice($(this).val());
-        });
+    });
     </script>
 }
