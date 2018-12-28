@@ -48,7 +48,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         // GET: /Admin/CashBill/Create
         public ActionResult Create()
         {
-            var cashbill = db.CashBills.OrderByDescending(x => x.ID).ToList();
+            
             return View(Session["CashBill"]);
         }
 
@@ -59,7 +59,6 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CashBill cashbill)
         {
-            checkCashBill(cashbill);
             if (ModelState.IsValid)
             {
                 Session["CashBill"] = cashbill;
@@ -102,12 +101,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         }
         private void checkCashBill(CashBill cashBill)
         {
-            if (cashBill.CustomerName == null || cashBill.CustomerName.Equals(""))
-                ModelState.AddModelError("CustomerName", "Tên khách hàng không được bỏ trống");
-            if (cashBill.Address == null || cashBill.Address.Equals(""))
-                ModelState.AddModelError("Address", "Địa chỉ không được bỏ trống");
-            if (cashBill.PhoneNumber == null || cashBill.PhoneNumber.Equals(""))
-                ModelState.AddModelError("PhoneNumber", "Số điện thoại không được bỏ trống");
+           
         }
         // GET: /Admin/CashBill/Edit/5
         public ActionResult Edit(int? id)
@@ -139,7 +133,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
             }
             return View(cashbill);
         }
-        public ActionResult Print(int id)
+        public ActionResult PrintCashBill(int id)
         {
             var order = db.CashBills.FirstOrDefault(o => o.ID == id);
             if (order != null)

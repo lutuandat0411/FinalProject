@@ -19,7 +19,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         {
             if (Session["CashBillDetail"] == null)
                 Session["CashBillDetail"] = new List<CashBillDetail>();
-            return PartialView(Session["CashBillDetail"]);
+            return View(Session["CashBillDetail"]);
         }
 
         public int SalePrice(int ProductID)
@@ -57,7 +57,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create2( CashBillDetail model)
+        public ActionResult Create2(CashBillDetail model)
         {
             if (ModelState.IsValid)
             {

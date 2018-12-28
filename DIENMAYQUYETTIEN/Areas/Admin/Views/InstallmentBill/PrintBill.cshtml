@@ -28,9 +28,9 @@
         <div id="details" class="clearfix">
             <div id="client">
                 <div class="to">HÓA ĐƠN TRẢ GÓP:</div>
-                <h2 class="name">@Model.CustomerName</h2>
-                <div class="phone">@Model.PhoneNumber</div>
-                <div class="address">@Model.Address</div>
+                <h2 class="name">@Model.Customer.CustomerName</h2>
+                <div class="phone">@Model.Customer.PhoneNumber</div>
+                <div class="address">@Model.Customer.Address</div>
                 <div class="note">@Model.Note</div>
             </div>
             <div id="invoice">
@@ -38,6 +38,7 @@
                 <div class="date">@Model.Date</div>
                 <div class="shipper">@Model.Shipper</div>
                 <div class="grandtotal">@Model.GrandTotal</div>
+                <div class="method">Hình thức trả: @Model.Method</div>
 
             </div>
         </div>
@@ -48,20 +49,22 @@
                     <th class="mhd">Mã hóa đơn</th>
                     <th class="tsp">Tên sản phẩm</th>
                     <th class="sl">Số lượng</th>
-                    <th class="pri">Đơn giá</th>
-                    <th class="tt">Thành tiền</th>
+                    <th class="pri">Giá Góp</th>
+                    <th class="tt">Trả Trước</th>
+                    <th class="cl">Còn Lại</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.CashBillDetail)
+                @foreach (var item in Model.InstallmentBillDetail)
                 {
                     <tr>
                         <td class="no">@i</td>
                         <td class="mhd"><h3>@Html.DisplayFor(modelItem => item.BillID)</h3></td>
                         <td class="tsp">@Html.DisplayFor(modelItem => item.Product.ProductName)</td>
                         <td class="sl">@Html.DisplayFor(modelItem => item.Quantity)</td>
-                        <td class="pri">@Html.DisplayFor(modelItem => item.SalePrice)</td>
-                        <td class="tt">@(item.Quantity * item.SalePrice)</td>
+                        <td class="pri">@(item.Quantity * item.InstallmentPrice)</td>
+                        <td class="tt">@Html.DisplayFor(modelItem => item.InstallmentBill.Taken)</td>
+                        <td class="cl">@Html.DisplayFor(modelItem => item.InstallmentBill.Remain)</td>
                     </tr>
                     i = i + 1;
                 }

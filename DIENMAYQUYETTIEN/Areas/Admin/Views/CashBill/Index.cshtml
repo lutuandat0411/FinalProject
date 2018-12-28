@@ -6,7 +6,7 @@
 }
 <link rel="stylesheet" type="text/css" href="~/AreasContent/dataTables.min.css" />
 
-<h2>Danh sách sản phẩm</h2>
+<h2>Danh sách Hóa Đơn</h2>
 <hr />
 <p>
     @Html.ActionLink("Thêm mới hóa đơn", "Create", null, new { @class = "btn btn-primary pull-right", @style = "margin-bottom: 10px" })
@@ -55,7 +55,7 @@
 					</td>
 					<td>
 						@Html.ActionLink("Edit", "Edit", new { id=item.ID }, new {@class = "btn btn-warning" }) |
-						@Html.ActionLink("Details", "Details", new { id=item.ID }, new {@class = "btn btn-info"}) 
+						@Html.ActionLink("Print Bill", "PrintCashBill", new { id=item.ID }, new {@class = "btn btn-info"}) 
 					</td>
 				</tr>
 			}

@@ -81,15 +81,21 @@
 <div>
     @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary pull-right", @style = "margin-bottom: 10px" })
 </div>
-
 @section Scripts {
-<script>
-    $('#ProductID').change(function () {
-        var url = '@Url.Action("SalePrice", "CashBillDetail")';
-        url = url + '?ProductID=' + $(this).val();
-        $.get(url, function (data) {
-            $('#SalePrice').val(data);
+    <script>
+        function getSalePrice(ProductID) {
+            var url = '@Url.Action("SalePrice", "CashBillDetails")';
+            url = url + '?ProductID=' + ProductID
+            $.get(url, function (data) {
+                $('#SalePrice').val(data);
+            });
+        }
+        $(document).ready(function () {
+            var ProductID = $("#ProductID").children("option:selected").val();
+            getSalePrice(ProductID);
         });
-    });
-</script>
+        $('#ProductID').change(function () {
+            getSalePrice($(this).val());
+        });
+    </script>
 }
