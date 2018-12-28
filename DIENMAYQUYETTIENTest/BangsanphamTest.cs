@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DIENMAYQUYETTIEN.Areas.Admin.Controllers;
 using System.Web.Mvc;
-
+using Moq;
 using DIENMAYQUYETTIEN.Models;
 using System.Transactions;
+using System.Web;
+using System.Web.Routing;
 
 namespace DIENMAYQUYETTIENTest
 {
@@ -22,12 +24,16 @@ namespace DIENMAYQUYETTIENTest
         public void TestIndex()
         {
             var controller = new ProductAdminController();
+            var context = new Mock<HttpContextBase>();
+            context.Setup(c => c.Session["UserName"]).Returns("abc");
+            controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
+
             var result = controller.Index() as ViewResult;
             var db = new DIENMAYQUYETTIENEntities();
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result.Model, typeof(List<Product>));
-            Assert.AreEqual(db.Products, ((List<Product>)result.Model).Count);
+            Assert.AreEqual(db.Products.Count(), ((List<Product>)result.Model).Count);
         }
         
         [TestMethod]
@@ -40,11 +46,15 @@ namespace DIENMAYQUYETTIENTest
         public void CreateTest()
         {
             var controller = new ProductAdminController();
+            var context = new Mock<HttpContextBase>();
+            context.Setup(c => c.Session["UserName"]).Returns("abc");
+            controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
+
+            var result = controller.Index() as ViewResult;
             var db = new DIENMAYQUYETTIENEntities();
-            var result = controller.Create() as ViewResult;
 
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result.ViewData["product.ID"], typeof(SelectList));
+           
         }
 
        
@@ -84,17 +94,7 @@ namespace DIENMAYQUYETTIENTest
             }
         }
 
-        [TestMethod]
-        public void LoginTest()
-        {
-
-        }
-
-        [TestMethod]
-        public void LogoutTest()
-        {
-
-        }
+       
        
     }
 }
