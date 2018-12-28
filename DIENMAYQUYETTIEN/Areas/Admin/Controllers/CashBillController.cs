@@ -162,5 +162,10 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public FilePathResult Details(string p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
