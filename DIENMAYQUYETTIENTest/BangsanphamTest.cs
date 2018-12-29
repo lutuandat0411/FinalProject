@@ -39,25 +39,73 @@ namespace DIENMAYQUYETTIENTest
         [TestMethod]
         public void UpdateTest()
         {
+            var db = new DIENMAYQUYETTIENEntities();
 
+            var pro = db.Products.First();
+
+            var controller = new ProductAdminController();
+            var session = new Mock<HttpSessionStateBase>();
+            var context = new Mock<HttpContextBase>();
+            context.Setup(c => c.Session).Returns(session.Object);
+            controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
+            
+
+            // act
+            var result = controller.Edit(pro.ID) as ViewResult;
+            Assert.IsNotNull(result);
+            //Assert.IsInstanceOfType(result.ViewData["ProductType"], typeof(SelectList));
+            Assert.IsInstanceOfType(result.ViewBag.ProductType, typeof(List<ProductType>));
         }
-
         [TestMethod]
-        public void CreateTest()
+        public void CreateGetTest()
+        {
+            var controller = new ProductAdminController();
+            var result = controller.Create() as ViewResult;
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result.ViewBag.ProductType, typeof(List<ProductType>));
+            //Assert.IsInstanceOfType(result.ViewData["ProductType"], typeof(SelectList));
+        }
+        [TestMethod]
+        public void CreatePostTest()
         {
             var controller = new ProductAdminController();
             var context = new Mock<HttpContextBase>();
-            context.Setup(c => c.Session["UserName"]).Returns("abc");
+            var request = new Mock<HttpRequestBase>();
+            var files = new Mock<HttpFileCollectionBase>();
+            var file = new Mock<HttpPostedFileBase>();
+            context.Setup(c => c.Request).Returns(request.Object);
+            request.Setup(r => r.Files).Returns(files.Object);
+            files.Setup(f => f["Imagefile"]).Returns(file.Object);
+            file.Setup(f => f.ContentLength).Returns(1);
+            context.Setup(c => c.Server.MapPath("~/Image")).Returns("~/Image");
             controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
 
-            var result = controller.Index() as ViewResult;
             var db = new DIENMAYQUYETTIENEntities();
+            var model = new Product();
+            model.ProductTypeID = db.ProductTypes.First().ID;
+            model.ProductName = "TenSP";
+            model.ProductCode = "TVI0001";
+            model.OriginPrice = 123;
+            model.SalePrice = 456;
+            model.InstallmentPrice = 789;
+            model.Quantity = 10;
 
-            Assert.IsNotNull(result);
-           
+            using (var scope = new TransactionScope())
+            {
+                var result0 = controller.Create(model) as RedirectToRouteResult;
+                Assert.IsNotNull(result0);
+                file.Verify(f => f.SaveAs(It.Is<string>(s => s.StartsWith("~/Image/"))));
+                Assert.AreEqual("Index", result0.RouteValues["action"]);
+
+                file.Setup(f => f.ContentLength).Returns(0);
+                var result1 = controller.Create(model) as ViewResult;
+                Assert.IsNotNull(result1);
+                Assert.IsInstanceOfType(result1.ViewBag.ProductType, typeof(List<ProductType>));
+            }
+            
         }
-
-       
+    
         [TestMethod]
            public void DeleteTest()
            {
@@ -91,8 +139,8 @@ namespace DIENMAYQUYETTIENTest
                         var result2 = target.De(product.ID) as RedirectToRouteResult;
                         Assert.IsNotNull(result2);
                         Assert.AreEqual(count - 1, db.Products.Count());
-            }
-        }
+                }
+           }   
 
        
        

@@ -147,3 +147,12 @@ D:\FinalProject\DIENMAYQUYETTIENTest\bin\Debug\Moq.pdb
 D:\FinalProject\DIENMAYQUYETTIENTest\bin\Debug\Moq.xml
 D:\FinalProject\DIENMAYQUYETTIENTest\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\FinalProject\DIENMAYQUYETTIENTest\bin\Debug\System.Threading.Tasks.Extensions.xml
+G:\PTTKHDT\FinalProject\DIENMAYQUYETTIENTest\bin\Debug\Castle.Core.dll
+G:\PTTKHDT\FinalProject\DIENMAYQUYETTIENTest\bin\Debug\Moq.dll
+G:\PTTKHDT\FinalProject\DIENMAYQUYETTIENTest\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+G:\PTTKHDT\FinalProject\DIENMAYQUYETTIENTest\bin\Debug\System.Threading.Tasks.Extensions.dll
+G:\PTTKHDT\FinalProject\DIENMAYQUYETTIENTest\bin\Debug\Castle.Core.xml
+G:\PTTKHDT\FinalProject\DIENMAYQUYETTIENTest\bin\Debug\Moq.pdb
+G:\PTTKHDT\FinalProject\DIENMAYQUYETTIENTest\bin\Debug\Moq.xml
+G:\PTTKHDT\FinalProject\DIENMAYQUYETTIENTest\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+G:\PTTKHDT\FinalProject\DIENMAYQUYETTIENTest\bin\Debug\System.Threading.Tasks.Extensions.xml

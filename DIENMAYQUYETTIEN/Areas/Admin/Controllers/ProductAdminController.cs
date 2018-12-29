@@ -91,7 +91,18 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
             {
                 using (var scope = new TransactionScope())
                 {
-                    db.Products.Add(p);
+                    var pro = new Product();
+                    pro.ProductCode = p.ProductCode;
+                    pro.ProductName = p.ProductName;
+                    pro.ProductType = p.ProductType;
+                    pro.ProductTypeID = p.ProductTypeID;
+                    pro.OriginPrice = p.OriginPrice;
+                    pro.SalePrice = p.SalePrice;
+                    pro.Status = p.Status;
+                    pro.Quantity = p.Quantity;
+                    pro.InstallmentPrice = p.InstallmentPrice;
+                    pro.Avatar = p.Avatar;
+                    db.Products.Add(pro);
                     db.SaveChanges();
                     var path = Server.MapPath("~/Image");
                     path = path + "/" + p.ID;
@@ -111,6 +122,12 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
             ViewBag.ProductType = db.ProductTypes.OrderByDescending(x => x.ID).ToList();
             return View(p);
         }
+
+        public RedirectToRouteResult Edit(Product pro)
+        {
+            throw new NotImplementedException();
+        }
+
         private void CheckProduct(Product p)
         {
             DIENMAYQUYETTIENEntities db = new DIENMAYQUYETTIENEntities();

@@ -174,3 +174,12 @@ D:\FinalProject\DIENMAYQUYETTIEN\bin\System.Threading.Tasks.Extensions.dll
 D:\FinalProject\DIENMAYQUYETTIEN\bin\Moq.pdb
 D:\FinalProject\DIENMAYQUYETTIEN\bin\Moq.xml
 D:\FinalProject\DIENMAYQUYETTIEN\bin\System.Threading.Tasks.Extensions.xml
+G:\PTTKHDT\FinalProject\DIENMAYQUYETTIEN\bin\Castle.Core.dll
+G:\PTTKHDT\FinalProject\DIENMAYQUYETTIEN\bin\Moq.dll
+G:\PTTKHDT\FinalProject\DIENMAYQUYETTIEN\bin\System.Runtime.CompilerServices.Unsafe.dll
+G:\PTTKHDT\FinalProject\DIENMAYQUYETTIEN\bin\System.Threading.Tasks.Extensions.dll
+G:\PTTKHDT\FinalProject\DIENMAYQUYETTIEN\bin\Castle.Core.xml
+G:\PTTKHDT\FinalProject\DIENMAYQUYETTIEN\bin\Moq.pdb
+G:\PTTKHDT\FinalProject\DIENMAYQUYETTIEN\bin\Moq.xml
+G:\PTTKHDT\FinalProject\DIENMAYQUYETTIEN\bin\System.Runtime.CompilerServices.Unsafe.xml
+G:\PTTKHDT\FinalProject\DIENMAYQUYETTIEN\bin\System.Threading.Tasks.Extensions.xml
