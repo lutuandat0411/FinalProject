@@ -53,7 +53,9 @@ namespace DIENMAYQUYETTIENTest
             // act
             var result = controller.Edit(pro.ID) as ViewResult;
             Assert.IsNotNull(result);
+            // Select List theo Mrs Chau;
             //Assert.IsInstanceOfType(result.ViewData["ProductType"], typeof(SelectList));
+            // Select List theo Mr Duy;
             Assert.IsInstanceOfType(result.ViewBag.ProductType, typeof(List<ProductType>));
         }
         [TestMethod]
@@ -63,7 +65,9 @@ namespace DIENMAYQUYETTIENTest
             var result = controller.Create() as ViewResult;
 
             Assert.IsNotNull(result);
+            // Select List theo Mr Duy;
             Assert.IsInstanceOfType(result.ViewBag.ProductType, typeof(List<ProductType>));
+            // Select List theo Mrs Chau;
             //Assert.IsInstanceOfType(result.ViewData["ProductType"], typeof(SelectList));
         }
         [TestMethod]
@@ -101,6 +105,7 @@ namespace DIENMAYQUYETTIENTest
                 file.Setup(f => f.ContentLength).Returns(0);
                 var result1 = controller.Create(model) as ViewResult;
                 Assert.IsNotNull(result1);
+                // Select List theo Mr Duy;
                 Assert.IsInstanceOfType(result1.ViewBag.ProductType, typeof(List<ProductType>));
             }
             
@@ -110,7 +115,6 @@ namespace DIENMAYQUYETTIENTest
            public void DeleteTest()
            {
                 ProductAdminController target = new ProductAdminController();
-                int id = 50;
 
                 var db = new DIENMAYQUYETTIENEntities();
 

@@ -2,10 +2,8 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout2.cshtml";
 }
-
-<link rel="stylesheet" type="text/css" href="~/AreasContent/dataTables.min.css" />
 
 <h2>Danh sách sản phẩm</h2>
 <hr />
@@ -67,7 +65,7 @@
                </tbody>
     </table>
 @section Scripts{
-    <script type="text/javascript" charset="utf-8" src="~/AreasContent/dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="~/AreasContent/Layout/dataTables.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#myTable').DataTable();
