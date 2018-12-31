@@ -20,7 +20,7 @@
         @Html.ValidationSummary(true)
 
         <div class="row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 @Html.LabelFor(model => model.CustomerName, "Tên khách hàng")
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.CustomerName)
@@ -28,7 +28,7 @@
                 </div>
             </div>
 
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 @Html.LabelFor(model => model.PhoneNumber, "Số điện thoại")
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.PhoneNumber)

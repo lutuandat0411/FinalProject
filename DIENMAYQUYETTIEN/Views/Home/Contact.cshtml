@@ -1,17 +1,170 @@
-﻿@{
-    ViewBag.Title = "Contact";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <link rel="shortcut icon" href="~/assets/images/Logo_QT.png" type="image/x-icon">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Điện Máy Quyết Tiến</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="~/assets/css/bootstrap-theme.min.css">
+        <!--For Plugins external css-->
+        <link rel="stylesheet" href="~/assets/css/plugins.css" />
+        <!-- <link rel="stylesheet" href="~/assets/css/roboto-webfont.css" /> -->
+        <!--Theme custom css -->
+        <link rel="stylesheet" href="~/assets/css/style.css">
+        <!--Theme Responsive css-->
+        <link rel="stylesheet" href="~/assets/css/responsive.css" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="~/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
+<body>
+  <div class='preloader'><div class='loaded'>&nbsp;</div></div>
+  <nav class="navbar navbar-default">
+  <div class="container">
+   <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+    <a href="index.html"><img class="img-logo" src="assets/images/Logo_QT.jpg" alt="Logo" /></a>
+  </div>
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="index.html">Trang Chủ</a></li>
+      <li><a href="tintuc.html">Tin Tức - Khuyến Mãi</a></li>
+      <li><a href="gioithieu.html">Về Chúng Tôi</a></li>
+      <li><a href="tragop.html">Chính Sách Trả Góp</a></li>
+      <li class="active"><a href="#home">Liên hệ</a></li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+  </nav>
+ <hr>
+ <div class="container">
+  <div class="col-md-8">
+     <div class="slideshow-container">
+          <div id="slideshow">
+              <div id="carousel-slideshow" class="carousel slide c-fade" data-ride="carousel" data-interval="3000">
+                  <!-- Indicators -->
+                  <ol class="carousel-indicators">
+                      <li data-target="#carousel-slideshow" data-slide-to="0" class="active" ></li>
+                      <li data-target="#carousel-slideshow" data-slide-to="1"  ></li>
+                      <li data-target="#carousel-slideshow" data-slide-to="2"  ></li>
+                      <li data-target="#carousel-slideshow" data-slide-to="3"  ></li>
+                  </ol>
+                  <!-- Wrapper for slides -->
+                  <div class="carousel-inner">
+                      <div class="item active ">
+                          <img src="" alt=""/>
+                      </div>
+                      <div class="item ">
+                          <img src="" alt=""/>
+                      </div>
+                      <div class="item ">
+                          <img src="" alt=""/>
+                      </div>
+                      <div class="item ">
+                          <img src="" alt=""/>
+                      </div>  
+                  </div>
+              </div>
+            </div>
+         </div>
+  </div>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+ <div class="container">
+  <div class="divcontactus">
+    <h3 style="text-align: center; padding-left: 10px; background: #8d8e8e; color: white; font-size: 18px; margin-bottom: 0px; position: relative; z-index: 999; border-radius: 4px;">Liên Hệ</h3>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+     <div class="w3-container w3-light-grey"  id="contact"> 
+      <p><i class="fa fa-map-marker fa-fw w3-text-grey w3-xxlarge w3-margin-right"></i> Địa chỉ liên hệ trực tiếp: 1600 Đường 3/2, Phường 20, Quận 11, United States of America.
+      </p>         
+     <p><i class="fa fa-phone fa-fw w3-text-grey w3-xxlarge w3-margin-right"></i> Điện thoại cố định:<strong>(028) 999-9999</strong>  -  Điện thoại di động: <strong>(0948) 36-999999999999</strong> </p> <br>
+     <p style="color: red">Gửi thông tin cho chúng tôi:</p>
+      
+    
+    
+
+    <form action="/action_page.php" target="_blank">
+      <p><input class="w3-input w3-padding-16" type="text" placeholder="Name" required name="Name"></p>
+      <p><input class="w3-input w3-padding-16" type="text" placeholder="Email" required name="Email"></p>
+      <p><input class="w3-input w3-padding-16" type="text" placeholder="Subject" required name="Subject"></p>
+      <p><input class="w3-input w3-padding-16" type="text" placeholder="Message" required name="Message"></p>
+      <p style=" left: 3000px;">
+        <button class="w3-button w3-grey w3-padding-large" style="padding-bottom: 10px;" type="submit">
+          <i class="fa fa-paper-plane"></i> GỬI
+        </button>
+      </p>
+    </form>
+   </div> 
+
+
+
+           </div>
+</div>
+<!-- end lienhe -->
+
+
+
+
+
+<section id="footer-menu" class="sections footer-menu">
+  <div class="container">
+    <div class="footer-menu-wrapper">
+      <div>
+        <div class="col-md-3">
+            <div class="menu-item">
+                 <a href="gioithieu.html"><h5>Tìm Hiểu Về Chúng Tôi</h5></a>
+                 <a href="tragop.html"><h5>Xem Chính Sách Trả Góp</h5></a>
+                 <a href="lienhe.html"><h5>Liên Hệ Với Quyết Tiến</h5></a>
+                 <h5>Gọi cho chúng tôi: 0370.00011122</h5>
+             </div>
+            </div>
+        </div>
+        <div>
+          <div class="col-md-3">
+            <h5>Quyết Tiến hân hạnh đồng hành cùng</h5>
+                <div class="rowz">
+                    <img src="assets/images/sony.png" style="width: 100px;">
+                    <img src="assets/images/samsung.png" style="width: 100px;">
+                    <img src="assets/images/toshiba.png" style="width: 100px;">
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+</section>
+   <!--Footer-->
+                <footer id="footer" class="footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="footer-wrapper">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="footer-brand">
+                                        <img class="img-logo" src="assets/images/Logo_QT.jpg" alt="logo" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="copyright">
+                                        <p>Made with <i class="fa fa-heart"></i> by <a target="_blank" href="http://bootstrapthemes.co"> Bootstrap Themes </a>2016. All rights reserved.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <script src="~/assets/js/vendor/jquery-1.11.2.min.js"></script>
+                <script src="~/assets/js/vendor/bootstrap.min.js"></script>
+                <script src="~/assets/js/plugins.js"></script>
+                <script src="~/assets/js/modernizr.js"></script>
+                <script src="~/assets/js/main.js"></script>
+            </body>
+        </html>

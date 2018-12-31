@@ -1,31 +1,188 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <link rel="shortcut icon" href="~/AreasContent/Print/Logo_QT_PNG.png" type="image/x-icon">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Điện Máy Quyết Tiến</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1.0">
+        <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="~/assets/css/bootstrap-theme.min.css">
+        <!--For Plugins external css-->
+        <link rel="stylesheet" href="~/assets/css/plugins.css" />
+        <!-- <link rel="stylesheet" href="~/assets/css/roboto-webfont.css" /> -->
+        <!--Theme custom css -->
+        <link rel="stylesheet" href="~/assets/css/style.css">
+        <!--Theme Responsive css-->
+        <link rel="stylesheet" href="~/assets/css/responsive.css" />
+        <script src="~/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
+<body>
+	<div class='preloader'><div class='loaded'>&nbsp;</div></div>
+	<nav class="navbar navbar-default">
+	<div class="container">
+	 <!-- Brand and toggle get grouped for better mobile display -->
+	<div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+	</button>
+ 		<a href="#"><img class="img-logo navbar-left" src="assets/images/Logo_QT.jpg" alt="Logo" /></a>
+	</div>
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<ul class="nav navbar-nav navbar-right">
+ 			<li class="active"><a href="#home">Trang Chủ</a></li>
+			<li><a href="tintuc.html">Tin Tức - Khuyến Mãi</a></li>
+ 			<li><a href="gioithieu.html">Về Chúng Tôi</a></li>
+ 			<li><a href="tragop.html">Chính Sách Trả Góp</a></li>
+ 			<li><a href="lienhe.html">Liên hệ</a></li>
+		</ul>
+	</div><!-- /.navbar-collapse -->
+ 	</div><!-- /.container-fluid -->
+	</nav>
+ <hr>
+ <div class="container">
+ 	<div class="col-md-8">
+ 		  <div id="carousel-slideshow" class="carousel slide c-fade" data-ride="carousel" data-interval="3000">
+                  <!-- Indicators -->
+                  <ol class="carousel-indicators">
+                      <li data-target="#carousel-slideshow" data-slide-to="0" class="active" ></li>
+                      <li data-target="#carousel-slideshow" data-slide-to="1"  ></li>
+                      <li data-target="#carousel-slideshow" data-slide-to="2"  ></li>
+                      <li data-target="#carousel-slideshow" data-slide-to="3"  ></li>
+                  </ol>
+                  <!-- Wrapper for slides -->
+                  <div class="carousel-inner">
+                      <div class="item active ">
+                          <img src="assets/images/slideshow_1.jpg" alt=""/>
+                      </div>
+                      <div class="item ">
+                          <img src="assets/images/slideshow_2.jpg" alt=""/>
+                      </div>
+                      <div class="item ">
+                          <img src="assets/images/slideshow_1.jpg" alt=""/>
+                      </div>
+                      <div class="item ">
+                          <img src="assets/images/slideshow_2.jpg" alt=""/>
+                      </div>  
+                  </div>
+              </div>
+            </div>
+		 </div>
+		 	<div class="col-md-4">
+ 		<ul class="nav nav-tabs">
+			  <li class="active"><a data-toggle="tab" href="#home">Thông Báo</a></li>
+			  <li><a data-toggle="tab" href="#menu1">Khuyến Mãi</a></li>
+			  <li><a data-toggle="tab" href="#menu2">Tuyển Dụng</a></li>
+			</ul>
+			<div class="tab-content">
+			  <div id="home" class="tab-pane fade in active">
+			    <p>Website sẽ bảo trì từ ngày 10/12 đến ngày 5/1.Nhóm thực hiện rơi vào tình trạng nhũn não, bão hòa IQ </p>
+			  </div>
+			  <div id="menu1" class="tab-pane fade">
+			    <p>Cửa hàng thường xuyên đưa ra những khuyến mãi hàng tháng, quý khách theo dõi thường xuyên để biết thêm thông tin chi tiết</p>
+			  </div>
+			  <div id="menu2" class="tab-pane fade">
+			    <p>Liên hệ tuyển dụng trực tiếp tại cửa hàng.</p>
+			  </div>
+			</div>
+			 	</div>
+			 </div>
+	<div class="container bodyperfect">
+		<div class="col-md-3">
+			<h3 class="title-widget-home" style="border-radius: 5px;">Danh mục</h3>
+			<div class="sidebar-home-content">
+				<nav class="menu-left">
+					<ul class="menu menu-danh-muc">
+						<li class="has_child menu-item"><a href="#">Điện Máy</a></li>
+						<li class="has_child menu-item"><a href="#">Điện Lạnh</a></li>
+						<li class="has_child menu-item"><a href="#">Gia Dụng</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="rowz">
+				<img class="img-thumbnail" src="assets/images/sony.png">
+				<img class="img-thumbnail" src="assets/images/samsung.png">
+				<img class="img-thumbnail" src="assets/images/toshiba.png">
+			</div>
+		</div>
+		<div class="col-md-9" >
+			<nav>
+				<div class="row">
+					<h3 class="heading" style="border-radius: 5px;">Sản phẩm <input style="border-radius: 10px; margin-left: 520px; color: #000;" type="text" placeholder="Search.."></h3>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+					<div class="container img-product" style="margin-bottom: 10px; overflow-x:auto;" border="1" >
+					@foreach(var item in Model)
+					{
+						<div class="col-md-6 col-sm-4 col-lg-2 productshow">
+						<a class="producthover" href="#">
+						 <div class="product-img thumbnail">
+							<img src="@Url.Action("LoadImage", new { id = item.ID })" alt="@item.ProductName">
+						 </div>
+						 <div class="product-info">
+							<h2 class="product-name">@item.ProductName</h2>
+						 <div class="product-price">@item.SalePrice</div>
+						</a>
+						</div>
+					}
+        		 </div>
+				</div>
+			</nav>
+		</div>
+	</div>
+<section id="footer-menu" class="sections footer-menu">
+  <div class="container">
+    <div class="footer-menu-wrapper">
+      <div>
+        <div class="col-md-3">
+            <div class="menu-item">
+                 <a href="gioithieu.html"><h5>Tìm Hiểu Về Chúng Tôi</h5></a>
+                 <a href="tragop.html"><h5>Xem Chính Sách Trả Góp</h5></a>
+                 <a href="lienhe.html"><h5>Liên Hệ Với Quyết Tiến</h5></a>
+                 <h5>Gọi cho chúng tôi: 0370.00011122</h5>
+             </div>
+            </div>
+        </div>
+        <div>
+          <div class="col-md-6">
+            <h5>Quyết Tiến hân hạnh đồng hành cùng</h5>
+                <div class="rowz">
+                    <img src="assets/images/sony.png" style="width: 100px;">
+                    <img src="assets/images/samsung.png" style="width: 100px;">
+                    <img src="assets/images/toshiba.png" style="width: 100px;">
+			 </div>
+			 </div>
+		 </div>
+	 </div>
+	 </div>
+	</section>
+   <!--Footer-->
+                <footer id="footer" class="footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="footer-wrapper">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="footer-brand">
+                                        <img class="img-logo" src="assets/images/Logo_QT.jpg" alt="logo" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="copyright">
+                                        <p>Made with <i class="fa fa-heart"></i> by <a target="_blank" href="http://bootstrapthemes.co"> Bootstrap Themes </a>2016. All rights reserved.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <script src="~/assets/js/vendor/jquery-1.11.2.min.js"></script>
+                <script src="~/assets/js/vendor/bootstrap.min.js"></script>
+                <script src="~/assets/js/plugins.js"></script>
+                <script src="~/assets/js/modernizr.js"></script>
+                <script src="~/assets/js/main.js"></script>
+            </body>
+        </html>
