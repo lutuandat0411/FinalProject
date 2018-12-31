@@ -22,14 +22,11 @@
     <!--  Paper Dashboard core CSS    -->
     <link href="~/AreasContent/Layout/css/paper-dashboard.css" rel="stylesheet"/>
 
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="~/AreasContent/Layout/css/demo.css" rel="stylesheet" />
-
     <!--  Fonts and icons     -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href="~/AreasContent/Layout/css/themify-icons.css" rel="stylesheet">
-
+	<link rel="stylesheet" type="text/css" href="~/AreasContent/Layout/dataTables.min.css" />
 	
 
 </head>
@@ -130,10 +127,14 @@
 
     <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
 	<script src="~/AreasContent/Layout/js/paper-dashboard.js"></script>
-
-	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-	<script src="~/AreasContent/Layout/js/demo.js"></script>
-
+	@section Scripts{
+    <script type="text/javascript" charset="utf-8" src="~/AreasContent/Layout/dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+	}
 	@RenderSection("scripts", required: false)
 	</body>
 </html>

@@ -4,15 +4,15 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout3.cshtml";
 }
-<link rel="stylesheet" type="text/css" href="~/AreasContent/dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="~/AreasContent/Layout/dataTables.min.css" />
 
-<h2>Danh sách Hóa Đơn</h2>
+<h2 style="text-align: center; padding-bottom: 15px;">Danh sách Hóa Đơn</h2>
 <hr />
 <p>
     @Html.ActionLink("Thêm mới hóa đơn", "Create", null, new { @class = "btn btn-primary pull-right", @style = "margin-bottom: 10px" })
 </p>
 
-    <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%">
+    <table class="table table-bordered table-striped table-hover" id="myTable" width="100%">
 		<thead>
                 <tr>
                      <th>Bill Code</th>
@@ -62,7 +62,7 @@
 		</tbody>
 	</table>
 @section Scripts{
-    <script type="text/javascript" charset="utf-8" src="~/AreasContent/dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="~/AreasContent/Layout/dataTables.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#myTable').DataTable();

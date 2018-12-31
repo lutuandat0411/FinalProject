@@ -5,21 +5,23 @@
 	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout3.cshtml";
 }
 
-<h2>THÊM HÓA ĐƠN TIỀN MẶT</h2>
+<h2 style="text-align: center; padding-bottom: 15px;">THÊM HÓA ĐƠN TIỀN MẶT</h2>
 
-
+<hr />
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                   
     <div class="form-horizontal">
-        <h4>Thông tin hóa đơn</h4>
-        <hr />
+        
+        <div class="container">
+		<h4 style="text-align: center;">Thông tin hóa đơn</h4>
         @Html.ValidationSummary(true)
 
         <div class="row">
             <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.CustomerName, "Tên khách hàng", new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.CustomerName, "Tên khách hàng")
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.CustomerName)
                     @Html.ValidationMessageFor(model => model.CustomerName)
@@ -27,7 +29,7 @@
             </div>
 
             <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.PhoneNumber, "Số điện thoại", new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.PhoneNumber, "Số điện thoại")
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.PhoneNumber)
                     @Html.ValidationMessageFor(model => model.PhoneNumber)
@@ -36,29 +38,38 @@
         </div>
 
         <div class="row">
-            <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.Address, "Địa chỉ", new { @class = "control-label col-md-2" })
+            <div class="form-group col-md-3">
+                 @Html.LabelFor(model => model.Address, "Địa Chỉ", new { @class = "control-label" })
                 <div class="col-md-10">
                     @Html.TextAreaFor(model => model.Address)
                     @Html.ValidationMessageFor(model => model.Address)
                 </div>
             </div>
-
-            <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.Note, "Ghi chú", new { @class = "control-label col-md-2" })
+		<div class="form-group col-md-3">
+                 @Html.LabelFor(model => model.Shipper, "Người giao", new { @class = "control-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Shipper)
+                    @Html.ValidationMessageFor(model => model.Shipper)
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                 @Html.LabelFor(model => model.Note, "Ghi Chú", new { @class = "control-label" })
                 <div class="col-md-10">
                     @Html.TextAreaFor(model => model.Note)
                     @Html.ValidationMessageFor(model => model.Note)
                 </div>
             </div>
         </div>
-
+		
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Lưu hóa đơn" class="btn btn-default" />
+				 @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary ", @style = "margin-left: 10px" })
             </div>
         </div>
     </div>
+	</div>
+	</div>
 }
 
 @if (Session["CashBill"] != null) { 
@@ -79,7 +90,6 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary pull-right", @style = "margin-bottom: 10px" })
 </div>
 @section Scripts{
     <script>

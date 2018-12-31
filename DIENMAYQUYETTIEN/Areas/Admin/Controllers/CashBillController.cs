@@ -26,7 +26,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
             }
             else
             {
-                return RedirectToAction("~/ProductAdmin/Login");
+                return RedirectToAction("Login", "ProductAdmin");
             }
         }
 
@@ -48,7 +48,14 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         // GET: /Admin/CashBill/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["UserName"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         // POST: /Admin/CashBill/Create
@@ -58,6 +65,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CashBill cashbill)
         {
+            checkCashBill(cashbill);
             if (ModelState.IsValid)
             {
                 Session["CashBill"] = cashbill;
@@ -102,7 +110,15 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         }
         private void checkCashBill(CashBill cashBill)
         {
-           
+            if (cashBill.CustomerName == null)
+                ModelState.AddModelError("CustomerName", "Tên khách hàng không được bỏ trống");
+            if (cashBill.CustomerName.Length > 50)
+                ModelState.AddModelError("CustomerName", "Tên khách hàng không được quá 50 ký tự");
+            if (cashBill.Address == null)
+                ModelState.AddModelError("Address", "Địa chỉ không được bỏ trống");
+            if (cashBill.PhoneNumber == null || cashBill.PhoneNumber.Length > 12)
+                ModelState.AddModelError("PhoneNumber", "Số điện thoại không được bỏ trống hoặc quá 12 số");
+            
         }
         // GET: /Admin/CashBill/Edit/5
         public ActionResult Edit(int? id)
@@ -118,6 +134,11 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
             }
             return View(cashbill);
         }
+        public void checkEdit(CashBill cash)
+        {
+            if (cash.PhoneNumber == null || cash.PhoneNumber.Length > 12)
+                ModelState.AddModelError("PhoneNumber", "Số điện thoại không được trống hoặc dài hơn 12 số");
+        }
 
         // POST: /Admin/CashBill/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -126,6 +147,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit( CashBill cashbill)
         {
+            checkEdit(cashbill);
             if (ModelState.IsValid)
             {
                 try

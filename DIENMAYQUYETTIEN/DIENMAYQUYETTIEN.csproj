@@ -529,9 +529,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Areas\Admin\Views\InstallmentBill\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\InstallmentBill\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\InstallmentBill\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\InstallmentBill\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\InstallmentBill\Index.cshtml" />
     <Content Include="Areas\Admin\Views\InstallBillDetail\Create.cshtml" />
     <Content Include="Areas\Admin\Views\InstallBillDetail\Edit.cshtml" />

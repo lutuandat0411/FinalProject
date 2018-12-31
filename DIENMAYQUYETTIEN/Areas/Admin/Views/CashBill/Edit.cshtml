@@ -5,77 +5,77 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout3.cshtml";
 }
 
-<h2>Cập Nhật Hóa Đơn<h2>
+<h2 style="text-align: center; padding-bottom: 15px;">Cập Nhật Thông tin hóa đơn<h2>
+<hr />
     @using (Html.BeginForm("Edit", "CashBill", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
-        
-        <div class="form-horizontal">
-            <h4>CashBill</h4>
-            <hr />
+      <div class="container" align="center" style="max-width: 100%;">
+        <div class="form-container" style="max-width: 400px;margin: 40px auto;">
+		
+            
             @Html.ValidationSummary(true)
             @Html.HiddenFor(model => model.ID)
             @Html.HiddenFor(model => model.BillCode)
-            <div class="form-group">
-                @Html.LabelFor(model => model.BillCode, "Mã Hóa Đơn", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.BillCode, new { disabled = "disabled", @readonly = "readonly" })
-                    @Html.ValidationMessageFor(model => model.BillCode)
-                </div>
-            </div>
+			<div class="form-group">
+				<label for="">Mã Hóa Đơn</label>
+				<div>
+				@Html.TextBoxFor(model => model.BillCode, new { disabled = "disabled", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.BillCode)
+				</div>
+			</div>
             @Html.HiddenFor(model => model.CustomerName)
             <div class="form-group">
-                @Html.LabelFor(model => model.CustomerName, "Tên Khách Hàng", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.CustomerName, new { disabled = "disabled", @readonly = "readonly" })
-                    @Html.ValidationMessageFor(model => model.CustomerName)
-                </div>
+               <label for="">Tên Khách hàng</label>
+			   <div>
+                @Html.TextBoxFor(model => model.CustomerName, new { disabled = "disabled", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.CustomerName)
+				</div>
+            </div>
+            <div class="form-group">
+               <label for="">Điện Thoại Liên Lạc</label>
+			   <div>
+               @Html.EditorFor(model => model.PhoneNumber, new { @class = "form-control" })
+               @Html.ValidationMessageFor(model => model.PhoneNumber)
+			   </div>
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.PhoneNumber, "Điện Thoại Liên Lạc", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PhoneNumber, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.PhoneNumber)
-                </div>
+                <label for="">Địa chỉ</label>
+				<div>
+                @Html.TextAreaFor(model => model.Address, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Address)
+				</div>
             </div>
-    
+			@Html.HiddenFor(model => model.Date)
             <div class="form-group">
-                @Html.LabelFor(model => model.Address, "Địa chỉ", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Address, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Address)
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.Date, "Ngày lập hóa đơn", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.Date, new { disabled = "disabled", @readonly = "readonly" })
+                <label for="">Ngày Mua</label>
+                <div>
+                    @Html.TextBoxFor(model => model.Date,  new { disabled = "disabled", @readonly = "readonly" })
                     @Html.ValidationMessageFor(model => model.Date)
                 </div>
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.Shipper, "Người Giao Hàng", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <label for="">Ngày Mua</label>
+                <div>
                     @Html.EditorFor(model => model.Shipper, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Shipper)
                 </div>
             </div>
     
             <div class="form-group">
-                @Html.LabelFor(model => model.Note, "Ghi chú", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Note, new { @class = "form-control" })
+                <label for="">Ghi Chú</label>
+                <div>
+                    @Html.TextAreaFor(model => model.Note)
                     @Html.ValidationMessageFor(model => model.Note)
                 </div>
             </div>
-    
+			@Html.HiddenFor(model => model.GrandTotal)
             <div class="form-group">
-                @Html.LabelFor(model => model.GrandTotal, "Tổng Tiền", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.GrandTotal, new { disabled = "disabled", @readonly = "readonly" })
+                <label for="">Tổng Tiền</label>
+                <div>
+                    @Html.TextBoxFor(model => model.GrandTotal, new { disabled = true, @readonly = "readonly" })
                     @Html.ValidationMessageFor(model => model.GrandTotal)
                 </div>
             </div>
@@ -83,11 +83,13 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Save" class="btn btn-default" />
+					@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary", @style = "padding-left: 10px;" } )
                 </div>
             </div>
         </div>
+		</div>
     }
     
     <div>
-        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary pull-right", @style = "padding-left: 10px;" } )
+        
     </div>

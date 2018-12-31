@@ -27,25 +27,24 @@
     <main>
         <div id="details" class="clearfix">
             <div id="client">
-                <div class="to">HÓA ĐƠN TIỀN MẶT:</div>
-                <h2 class="name">@Model.CustomerName</h2>
-                <div class="phone">@Model.PhoneNumber</div>
-                <div class="address">@Model.Address</div>
-                <div class="note">@Model.Note</div>
+                <div class="to">HÓA ĐƠN TIỀN MẶT</div>
+                <h2 class="name">Tên khách hàng: @Model.CustomerName</h2>
+                <div class="phone">Số điện thoại: @Model.PhoneNumber</div>
+                <div class="address">Địa chỉ: @Model.Address</div>
+                <div class="note">Ghi chú: @Model.Note</div>
             </div>
             <div id="invoice">
                 <h1>@Model.BillCode</h1>
-                <div class="date">@Model.Date</div>
-                <div class="shipper">@Model.Shipper</div>
-                <div class="grandtotal">@Model.GrandTotal</div>
+                <div class="date">Ngày mua: @Model.Date</div>
+                <div class="shipper">Người giao hàng: @Model.Shipper</div>
 
             </div>
         </div>
         <table border="0" cellspacing="0" cellpadding="0">
             <thead>
                 <tr>
-                    <th class="no">#</th>
-                    <th class="mhd">Mã hóa đơn</th>
+                    <th class="no">No</th>
+                    <th class="mhd">Mã sản phẩm</th>
                     <th class="tsp">Tên sản phẩm</th>
                     <th class="sl">Số lượng</th>
                     <th class="pri">Đơn giá</th>
@@ -57,7 +56,7 @@
                 {
                     <tr>
                         <td class="no">@i</td>
-                        <td class="mhd"><h3>@Html.DisplayFor(modelItem => item.BillID)</h3></td>
+                        <td class="mhd"><h3>@Html.DisplayFor(modelItem => item.Product.ProductCode)</h3></td>
                         <td class="tsp">@Html.DisplayFor(modelItem => item.Product.ProductName)</td>
                         <td class="sl">@Html.DisplayFor(modelItem => item.Quantity)</td>
                         <td class="pri">@Html.DisplayFor(modelItem => item.SalePrice)</td>
@@ -77,7 +76,9 @@
         <div id="thanks">Cám ơn. Bạn đã mua sản phẩm của chúng tôi!</div>
         <div id="notices">
             <div>NOTICE:</div>
-            <div class="notice"></div>
+            <div class="notice">Mọi thắc mắc liên quan đến sản phẩm hoặc hóa đơn, Vui Lòng Liên Hệ Bộ Phận Chăm Sóc Khách Hàng!</div>
+			<div class="notice">Hotline: 19009999</div>
+			<div class="notice">Sản phẩm bảo hành dựa theo hóa đơn! Vui lòng giữ cẩn thận hóa đơn.</div>
         </div>
     </main>
     <footer></footer>

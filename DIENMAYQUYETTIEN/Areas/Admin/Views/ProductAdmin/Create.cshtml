@@ -13,7 +13,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h2>Create new Product</h2>
+        <h2 style="text-align: center; padding-bottom: 20px;">Create new Product</h2>
         <hr />
         @Html.ValidationSummary(true)
 
@@ -92,14 +92,12 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-success" />
+				@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary", @style = "margin-left: 10px" })
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 <script>

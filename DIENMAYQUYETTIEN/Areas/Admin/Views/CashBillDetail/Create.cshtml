@@ -10,7 +10,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Thông tin các sản phẩm</h4>
+        <h4 style="text-align: center;">Thêm sản phẩm vào hóa đơn</h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.BillID)

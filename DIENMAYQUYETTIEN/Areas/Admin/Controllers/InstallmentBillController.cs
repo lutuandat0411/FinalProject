@@ -25,7 +25,7 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
             }
             else
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "ProductAdmin");
             }
 
         }
@@ -132,21 +132,21 @@ namespace DIENMAYQUYETTIEN.Areas.Admin.Controllers
         }
         public ActionResult PrintBill(int id)
         {
-            var order = db.InstallmentBills.FirstOrDefault(o => o.ID == id);
-            if (order != null)
+            var installment = db.InstallmentBills.FirstOrDefault(o => o.ID == id);
+            if (installment != null)
             {
                 InstallReceipt rp = new InstallReceipt();
-                rp.BillCode = order.BillCode;
-                rp.Customer.CustomerName = order.Customer.CustomerName;
-                rp.Shipper = order.Shipper;
-                rp.Method = order.Method;
-                rp.Date = order.Date;
-                rp.Period = order.Period;
-                rp.Note = order.Note;
-                rp.Taken = order.Taken;
-                rp.Remain = order.Remain;
-
-                rp.InstallmentBillDetail = order.InstallmentBillDetails.ToList();
+                rp.BillCode = installment.BillCode;
+                rp.CustomerID = installment.CustomerID;
+                rp.Date = installment.Date;
+                rp.Shipper = installment.Shipper;
+                rp.Note = installment.Note;
+                rp.Method = installment.Method;
+                rp.Period = installment.Period;
+                rp.GrandTotal = installment.GrandTotal;
+                rp.Taken = installment.Taken;
+                rp.Remain = installment.Remain;
+                rp.InstallmentBillDetail = installment.InstallmentBillDetails.ToList();
 
                 return View(rp);
             }
